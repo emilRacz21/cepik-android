@@ -154,7 +154,7 @@ public class VoivodeshipFragment extends Fragment {
                             JSONObject obj = response.getJSONObject("data").getJSONObject("attributes");
                             JSONArray objW = obj.getJSONArray("dostepne-rekordy-slownika");
                             VolleyLog.d(objW.toString());
-
+                            stringBuilder.setLength(0);
                             for (int i = 0; i < objW.length(); i++) {
                                 JSONObject object = objW.getJSONObject(i);
                                 kluczSlownika = object.getString("klucz-slownika");
