@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="#F1F1F1"
+    android:layout_height="match_parent"
+    tools:context=".ResultFragment">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22sp"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:id="@+id/bottm"
+            android:layout_gravity="center"
+            android:text="Wybrane informacje dla województwa"/>
+
+        <TextView
+            android:id="@+id/wojText"
+            android:textSize="32sp"
+            android:layout_marginTop="10sp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Województwo"/>
+        <TextView
+            android:id="@+id/dateText"
+            android:textSize="16sp"
+            android:layout_marginTop="10sp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2020.12.12 - 2021.01.12"/>
+        <ScrollView
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/setCarText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Prosze czekać"
+                android:layout_marginBottom="22sp"
+                android:layout_marginTop="22sp" />
+        </ScrollView>
+    </LinearLayout>
+
+</RelativeLayout>

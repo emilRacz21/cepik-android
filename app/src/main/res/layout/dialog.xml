@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="320sp"
+    android:background="#E0E5EA"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true">
+        <TextView
+            android:textColor="@color/black"
+            android:layout_marginTop="22sp"
+            android:layout_marginBottom="22sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Województwa"
+            android:textStyle="bold"
+            android:textSize="27sp"/>
+        <ScrollView
+            android:scrollbars="none"
+            android:layout_marginBottom="22sp"
+            android:layout_gravity="center"
+            android:layout_width="210sp"
+            android:layout_height="400sp">
+            <TextView
+                android:textSize="18sp"
+                android:text="test"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text"/>
+        </ScrollView>
+        <Button
+            android:id="@+id/dialog_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:text="OK"
+            android:layout_marginBottom="22sp"
+            android:backgroundTint="@color/colorPrimary"/>
+    </LinearLayout>
+
+</RelativeLayout>

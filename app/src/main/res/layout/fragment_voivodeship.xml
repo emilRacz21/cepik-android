@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="#F1F1F1"
+    android:layout_height="match_parent"
+    tools:context=".VoivodeshipFragment">
+
+    <ScrollView
+        android:layout_marginBottom="42sp"
+        android:paddingTop="6sp"
+        android:scrollbars="none"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:paddingTop="22sp"
+            android:paddingBottom="32sp"
+            android:paddingRight="32sp"
+            android:paddingLeft="32sp"
+            android:background="@drawable/radius_blue"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_marginBottom="22sp"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="UZUPEŁNIJ POLA"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
+
+            <Spinner
+                android:textAlignment="center"
+                android:background="@drawable/radius_profile"
+                android:layout_marginTop="5sp"
+                android:layout_width="260sp"
+                android:layout_height="60sp"
+                android:layout_gravity="center"
+                android:id="@+id/spinnerText"/>
+            <Spinner
+                android:textAlignment="center"
+                android:background="@drawable/radius_profile"
+                android:layout_marginTop="22sp"
+                android:layout_width="260sp"
+                android:layout_height="60sp"
+                android:layout_gravity="center"
+                android:id="@+id/spinnerTextWoj"/>
+
+            <EditText
+                android:textColor="@color/black"
+                android:layout_gravity="center"
+                android:layout_marginTop="22sp"
+                android:background="@drawable/radius_profile"
+                android:textAlignment="center"
+                android:hint="Wpisz markę pojazdu"
+                android:id="@+id/editTextAuto"
+                android:layout_width="260sp"
+                android:layout_height="60sp"
+                android:ems="10"
+                android:inputType="text" />
+            <EditText
+                android:textColor="@color/black"
+                android:layout_gravity="center"
+                android:layout_marginTop="22sp"
+                android:background="@drawable/radius_profile"
+                android:textAlignment="center"
+                android:hint="Podaj rok pojazdu"
+                android:id="@+id/editTextAutoYear"
+                android:layout_width="260sp"
+                android:layout_height="60sp"
+                android:ems="10"
+                android:inputType="date" />
+            <EditText
+                android:textColor="@color/black"
+                android:layout_gravity="center"
+                android:layout_marginTop="22sp"
+                android:background="@drawable/radius_profile"
+                android:textAlignment="center"
+                android:hint="Wpisz model pojazdu"
+                android:id="@+id/editTextAutoModel"
+                android:layout_width="260sp"
+                android:layout_height="60sp"
+                android:ems="10"
+                android:inputType="text" />
+            <EditText
+                android:textColor="@color/black"
+                android:layout_gravity="center"
+                android:layout_marginTop="22sp"
+                android:background="@drawable/radius_profile"
+                android:textAlignment="center"
+                android:hint="Wpisz datę początkową"
+                android:id="@+id/editTextDate"
+                android:layout_width="260sp"
+                android:layout_height="60sp"
+                android:ems="10"
+                android:inputType="date" />
+            <EditText
+                android:textColor="@color/black"
+                android:layout_gravity="center"
+                android:layout_marginTop="22sp"
+                android:background="@drawable/radius_profile"
+                android:textAlignment="center"
+                android:hint="Wpisz datę końcową"
+                android:id="@+id/editTextDate2"
+                android:layout_width="260sp"
+                android:layout_height="60sp"
+                android:ems="10"
+                android:inputType="date" />
+            <LinearLayout
+                android:layout_marginTop="22sp"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <Button
+                    android:backgroundTint="@color/colorPrimary"
+                    android:layout_gravity="center"
+                    android:textColor="@color/white"
+                    android:id="@+id/wojButton"
+                    android:layout_width="120sp"
+                    android:layout_height="60sp"
+                    android:text="Informacje"/>
+                <Button
+                    android:layout_marginStart="22sp"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:id="@+id/buttonAccept"
+                    android:layout_width="120sp"
+                    android:layout_height="60sp"
+                    android:text="Akceptuj"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</RelativeLayout>
