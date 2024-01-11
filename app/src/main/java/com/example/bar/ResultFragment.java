@@ -1,19 +1,16 @@
 package com.example.bar;
 
-import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentResultListener;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -21,41 +18,38 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-
 public class ResultFragment extends Fragment {
     public ResultFragment() {}
-
     TextView wojText;
-    TextView setCarText;
-    TextView dateText;
+    TextView dateTextBegin;
+    TextView dateTextEnd;
     String selectedCar;
     String selectedYear;
     String selectedModel;
     LinearLayout layoutProgress;
     LinearLayout layoutCurrent;
+    ListView carListView;
+    String[][] valueTab;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ((MainActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         ((MainActivity)getActivity()).setActionBar("  Informacje o pojazdach", R.drawable.baseline_directions_car_24);
         View view = inflater.inflate(R.layout.fragment_result, container, false);
-        setCarText = view.findViewById(R.id.setCarText);
+        carListView = view.findViewById(R.id.carListView);
         wojText = view.findViewById(R.id.wojText);
-        dateText = view.findViewById(R.id.dateText);
+        dateTextBegin = view.findViewById(R.id.dateText);
+        dateTextEnd = view.findViewById(R.id.dateTextEnd);
         layoutProgress = view.findViewById(R.id.hideLayout);
         layoutCurrent = view.findViewById(R.id.layoutCurrent);
-
         StringBuilder stringBuilder = new StringBuilder();
         layoutCurrent.setVisibility(View.GONE);
         getParentFragmentManager().setFragmentResultListener("values", this, new FragmentResultListener() {
@@ -72,11 +66,10 @@ public class ResultFragment extends Fragment {
                 String yearCar = result.getString("year");
                 String modelCar = result.getString("model").toUpperCase();
                 RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-
-                stringBuilder.append(dateBegin + " - " + dateEnd);
-                String date1 = dateBegin.replace("/","");
-                String date2 = dateEnd.replace("/","");
-                dateText.setText(stringBuilder);
+                String date1 = dateBegin.replace(".","");
+                String date2 = dateEnd.replace(".","");
+                dateTextBegin.setText(dateBegin);
+                dateTextEnd.setText(dateEnd);
 
                 if(!brandCar.isEmpty()){
                     selectedCar = "&filter[marka]="+brandCar;
@@ -87,9 +80,8 @@ public class ResultFragment extends Fragment {
                 if(!modelCar.isEmpty()){
                     selectedModel="&filter[model]="+modelCar;
                 }else selectedModel ="";
-                String urlAuta = "https://api.cepik.gov.pl/pojazdy?wojewodztwo="+ wojKey +"&data-od="+ date1 +"&data-do="+ date2 +"&typ-daty=1&tylko-zarejestrowane=true&pokaz-wszystkie-pola=true&limit=100&page=1"+rodzPal+selectedCar+selectedYear+selectedModel;
+                String urlAuta = "https://api.cepik.gov.pl/pojazdy?wojewodztwo="+ wojKey +"&data-od="+ date1 +"&data-do="+ date2 +"&typ-daty=1&tylko-zarejestrowane=true&pokaz-wszystkie-pola=true&limit=500&page=1"+rodzPal+selectedCar+selectedYear+selectedModel;
                 api(requestQueue, urlAuta);
-
             }
         });
         return view;
@@ -105,8 +97,8 @@ public class ResultFragment extends Fragment {
                         layoutProgress.setVisibility(View.GONE);
                         layoutCurrent.setVisibility(View.VISIBLE);
                         try {
-                            StringBuilder stringBuilder = new StringBuilder();
                             JSONArray vehiclesArray = response.getJSONArray("data");
+                            valueTab = new String[vehiclesArray.length()][vehiclesArray.length()];
                             for (int i = 0; i < vehiclesArray.length(); i++) {
                                 JSONObject vehicleObject = vehiclesArray.getJSONObject(i);
                                 JSONObject attributes = vehicleObject.getJSONObject("attributes");
@@ -114,9 +106,14 @@ public class ResultFragment extends Fragment {
                                 String model = attributes.getString("model");
                                 String sposobProdukcji = attributes.getString("sposob-produkcji");
                                 String rodzPaliw = attributes.getString("rodzaj-paliwa");
-                                stringBuilder.append("Marka: " + marka + " Model: " + model +" Rok produkcji: "+ sposobProdukcji + " Rodzaj paliwa: "+ rodzPaliw +"\n");
+                                valueTab[i][0] = marka;
+                                valueTab[i][1] = model;
+                                valueTab[i][2] = sposobProdukcji;
+                                valueTab[i][3] = rodzPaliw;
+                                System.out.println(vehiclesArray.length());
+                                CustomListAdapter customListAdapter = new CustomListAdapter(getContext(), valueTab);
+                                carListView.setAdapter(customListAdapter);
                             }
-                            setCarText.setText(stringBuilder.toString());
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

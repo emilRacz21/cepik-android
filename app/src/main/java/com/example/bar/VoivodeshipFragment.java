@@ -1,11 +1,8 @@
 package com.example.bar;
 
 import android.app.Dialog;
-import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +12,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -25,12 +20,9 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.Date;
 
 public class VoivodeshipFragment extends Fragment {
     Button btnAccept;
@@ -51,13 +43,10 @@ public class VoivodeshipFragment extends Fragment {
     Button wojButton;
     StringBuilder stringBuilder = new StringBuilder();
     public VoivodeshipFragment() {}
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_voivodeship, container, false);
@@ -74,12 +63,10 @@ public class VoivodeshipFragment extends Fragment {
         paliwoArray = getResources().getStringArray(R.array.paliwo);
         wojArray = getResources().getStringArray(R.array.wojewodztwa);
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
-
         String url = "https://api.cepik.gov.pl/slowniki/wojewodztwa";
         ArrayAdapter<String> adapterBen = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, paliwoArray);
         adapterBen.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapterBen);
-
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -94,7 +81,6 @@ public class VoivodeshipFragment extends Fragment {
             }
             @Override public void onNothingSelected(AdapterView<?> parent) {}
         });
-
         ArrayAdapter<String> adapterWoj = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item,wojArray);
         adapterWoj.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         wojSpinner.setAdapter(adapterWoj);
@@ -106,7 +92,6 @@ public class VoivodeshipFragment extends Fragment {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {}
         });
-
         api(requestQueue, url);
         btnAccept.setOnClickListener(view1 ->{
             api(requestQueue, url);
@@ -125,9 +110,7 @@ public class VoivodeshipFragment extends Fragment {
         Button dialogbtn = dialog.findViewById(R.id.dialog_button);
         dialogbtn.setOnClickListener(v -> dialog.dismiss());
         dialog.show();
-
     }
-
     void api(RequestQueue requestQueue, String url){
         StringRequest stringRequest = new StringRequest(
                 Request.Method.GET,

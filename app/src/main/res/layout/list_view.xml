@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/radius_blue"
+    android:rowCount="4"
+    android:paddingTop="22sp"
+    android:paddingBottom="22sp"
+    android:paddingStart="22sp"
+    android:columnCount="2"
+    android:layout_height="wrap_content"
+    tools:ignore="RtlSymmetry">
+    <TextView
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/marka" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/model"
+        android:textColor="@color/ltBlack"
+        android:textSize="15sp" />
+    <TextView
+        android:textColor="@color/ltBlack"
+        android:textSize="15sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/rok_produkcji" />
+
+    <TextView
+        android:textColor="@color/ltBlack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32sp"
+        android:text="@string/rodzaj_paliwa"
+        android:textSize="15sp" />
+    <TextView
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/audi"
+        android:id="@+id/marka"/>
+
+    <TextView
+        android:textColor="@color/ltBlack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/a6"
+        android:id="@+id/model"/>
+
+    <TextView
+        android:id="@+id/sposobProdukcji"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/_2018"
+        android:textColor="@color/ltBlack" />
+
+    <TextView
+        android:id="@+id/rodzPaliw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/benzyna"
+        android:textColor="@color/ltBlack" />
+</GridLayout>

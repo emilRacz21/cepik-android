@@ -5,4 +5,5 @@
     <color name="colorPrimary">#126AAF</color>
     <color name="colorPrimaryDark">#135E98</color>
     <color name="ltWhite">#F1F1F1</color>
+    <color name="ltBlack">#616161</color>
 </resources>

@@ -29,10 +29,10 @@
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="UZUPEŁNIJ POLA"
+                android:text="@string/uzupe_nij_pola"
                 android:textSize="22sp"
                 android:textStyle="bold"
-                android:textColor="@color/black"/>
+                android:textColor="@color/ltBlack"/>
 
             <Spinner
                 android:textAlignment="center"
@@ -52,65 +52,75 @@
                 android:id="@+id/spinnerTextWoj"/>
 
             <EditText
-                android:textColor="@color/black"
-                android:layout_gravity="center"
-                android:layout_marginTop="22sp"
-                android:background="@drawable/radius_profile"
-                android:textAlignment="center"
-                android:hint="Wpisz markę pojazdu"
                 android:id="@+id/editTextAuto"
                 android:layout_width="260sp"
                 android:layout_height="60sp"
-                android:ems="10"
-                android:inputType="text" />
-            <EditText
-                android:textColor="@color/black"
                 android:layout_gravity="center"
                 android:layout_marginTop="22sp"
+                android:autofillHints=""
                 android:background="@drawable/radius_profile"
+                android:ems="10"
+                android:hint="@string/wpisz_mark_pojazdu"
+                android:inputType="text"
                 android:textAlignment="center"
-                android:hint="Podaj rok pojazdu"
+                android:textColor="@color/black"
+                tools:ignore="TextContrastCheck" />
+
+            <EditText
                 android:id="@+id/editTextAutoYear"
                 android:layout_width="260sp"
                 android:layout_height="60sp"
-                android:ems="10"
-                android:inputType="date" />
-            <EditText
-                android:textColor="@color/black"
                 android:layout_gravity="center"
                 android:layout_marginTop="22sp"
                 android:background="@drawable/radius_profile"
+                android:ems="10"
+                android:hint="@string/podaj_rok_pojazdu"
+                android:inputType="date"
                 android:textAlignment="center"
-                android:hint="Wpisz model pojazdu"
+                android:textColor="@color/black"
+                tools:ignore="Autofill,TextContrastCheck" />
+
+            <EditText
                 android:id="@+id/editTextAutoModel"
                 android:layout_width="260sp"
                 android:layout_height="60sp"
-                android:ems="10"
-                android:inputType="text" />
-            <EditText
-                android:textColor="@color/black"
                 android:layout_gravity="center"
                 android:layout_marginTop="22sp"
                 android:background="@drawable/radius_profile"
+                android:ems="10"
+                android:hint="@string/wpisz_model_pojazdu"
+                android:inputType="text"
                 android:textAlignment="center"
-                android:hint="Wpisz datę początkową"
+                android:textColor="@color/black"
+                tools:ignore="Autofill,TextContrastCheck" />
+
+            <EditText
                 android:id="@+id/editTextDate"
                 android:layout_width="260sp"
                 android:layout_height="60sp"
-                android:ems="10"
-                android:inputType="date" />
-            <EditText
-                android:textColor="@color/black"
                 android:layout_gravity="center"
                 android:layout_marginTop="22sp"
                 android:background="@drawable/radius_profile"
+                android:ems="10"
+                android:hint="@string/wpisz_dat_pocz_tkow"
+                android:inputType="date"
                 android:textAlignment="center"
-                android:hint="Wpisz datę końcową"
+                android:textColor="@color/black"
+                tools:ignore="Autofill,TextContrastCheck" />
+
+            <EditText
                 android:id="@+id/editTextDate2"
                 android:layout_width="260sp"
                 android:layout_height="60sp"
+                android:layout_gravity="center"
+                android:layout_marginTop="22sp"
+                android:background="@drawable/radius_profile"
                 android:ems="10"
-                android:inputType="date" />
+                android:hint="@string/wpisz_dat_ko_cow"
+                android:inputType="date"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                tools:ignore="Autofill,TextContrastCheck" />
             <LinearLayout
                 android:layout_marginTop="22sp"
                 android:layout_gravity="center"
@@ -123,7 +133,8 @@
                     android:id="@+id/wojButton"
                     android:layout_width="120sp"
                     android:layout_height="60sp"
-                    android:text="Informacje"/>
+                    android:text="@string/informacje"
+                    tools:ignore="ButtonStyle" />
                 <Button
                     android:layout_marginStart="22sp"
                     android:backgroundTint="@color/colorPrimary"
@@ -132,11 +143,9 @@
                     android:id="@+id/buttonAccept"
                     android:layout_width="120sp"
                     android:layout_height="60sp"
-                    android:text="Akceptuj"/>
+                    android:text="@string/akceptuj"
+                    tools:ignore="ButtonStyle" />
             </LinearLayout>
-
         </LinearLayout>
     </ScrollView>
-
-
 </RelativeLayout>
