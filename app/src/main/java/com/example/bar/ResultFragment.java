@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentResultListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +36,8 @@ public class ResultFragment extends Fragment {
     String selectedCar;
     String selectedYear;
     String selectedModel;
+    LinearLayout layoutProgress;
+    LinearLayout layoutCurrent;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,8 +53,11 @@ public class ResultFragment extends Fragment {
         setCarText = view.findViewById(R.id.setCarText);
         wojText = view.findViewById(R.id.wojText);
         dateText = view.findViewById(R.id.dateText);
-        StringBuilder stringBuilder = new StringBuilder();
+        layoutProgress = view.findViewById(R.id.hideLayout);
+        layoutCurrent = view.findViewById(R.id.layoutCurrent);
 
+        StringBuilder stringBuilder = new StringBuilder();
+        layoutCurrent.setVisibility(View.GONE);
         getParentFragmentManager().setFragmentResultListener("values", this, new FragmentResultListener() {
             @Override
             public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
@@ -96,6 +102,8 @@ public class ResultFragment extends Fragment {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
+                        layoutProgress.setVisibility(View.GONE);
+                        layoutCurrent.setVisibility(View.VISIBLE);
                         try {
                             StringBuilder stringBuilder = new StringBuilder();
                             JSONArray vehiclesArray = response.getJSONArray("data");
