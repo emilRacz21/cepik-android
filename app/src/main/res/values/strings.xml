@@ -24,7 +24,8 @@
     <string name="_2020_12_12">2020.12.12</string>
     <string name="_2021_01_12">2021.01.12</string>
     <string name="wojew_dztwo">Województwo</string>
-        <string-array name="paliwo">
+    <string name="ilo_zarejestrowanych_pojazd_w">Ilość zarejestrowanych pojazdów:</string>
+    <string-array name="paliwo">
             <item>Benzyna</item>
             <item>Olej napędowy</item>
             <item>Benzyna i olej napędowy</item>

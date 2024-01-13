@@ -37,7 +37,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/wojew_dztwo"/>
-
+        <TextView
+            android:textColor="@color/ltBlack"
+            android:id="@+id/wojNums"
+            android:textSize="18sp"
+            android:layout_marginTop="10sp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ilo_zarejestrowanych_pojazd_w"/>
         <ListView
             android:divider="@color/ltWhite"
             android:dividerHeight="12dp"

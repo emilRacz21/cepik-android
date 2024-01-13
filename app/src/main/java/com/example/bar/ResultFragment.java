@@ -1,5 +1,6 @@
 package com.example.bar;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -26,6 +27,7 @@ public class ResultFragment extends Fragment {
     TextView wojText;
     TextView dateTextBegin;
     TextView dateTextEnd;
+    TextView wojNums;
     String selectedCar;
     String selectedYear;
     String selectedModel;
@@ -46,6 +48,7 @@ public class ResultFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_result, container, false);
         carListView = view.findViewById(R.id.carListView);
         wojText = view.findViewById(R.id.wojText);
+        wojNums = view.findViewById(R.id.wojNums);
         dateTextBegin = view.findViewById(R.id.dateText);
         dateTextEnd = view.findViewById(R.id.dateTextEnd);
         layoutProgress = view.findViewById(R.id.hideLayout);
@@ -65,7 +68,7 @@ public class ResultFragment extends Fragment {
                 String brandCar = result.getString("brand").toUpperCase();
                 String yearCar = result.getString("year");
                 String modelCar = result.getString("model").toUpperCase();
-                RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+
                 String date1 = dateBegin.replace(".","");
                 String date2 = dateEnd.replace(".","");
                 dateTextBegin.setText(dateBegin);
@@ -81,6 +84,8 @@ public class ResultFragment extends Fragment {
                     selectedModel="&filter[model]="+modelCar;
                 }else selectedModel ="";
                 String urlAuta = "https://api.cepik.gov.pl/pojazdy?wojewodztwo="+ wojKey +"&data-od="+ date1 +"&data-do="+ date2 +"&typ-daty=1&tylko-zarejestrowane=true&pokaz-wszystkie-pola=true&limit=500&page=1"+rodzPal+selectedCar+selectedYear+selectedModel;
+                System.out.println(urlAuta);
+                RequestQueue requestQueue = Volley.newRequestQueue(getContext());
                 api(requestQueue, urlAuta);
             }
         });
@@ -92,6 +97,7 @@ public class ResultFragment extends Fragment {
                 url,
                 null,
                 new Response.Listener<JSONObject>() {
+                    @SuppressLint("SetTextI18n")
                     @Override
                     public void onResponse(JSONObject response) {
                         layoutProgress.setVisibility(View.GONE);
@@ -100,6 +106,7 @@ public class ResultFragment extends Fragment {
                             JSONArray vehiclesArray = response.getJSONArray("data");
                             valueTab = new String[vehiclesArray.length()][vehiclesArray.length()];
                             for (int i = 0; i < vehiclesArray.length(); i++) {
+                                wojNums.setText(getResources().getString(R.string.ilo_zarejestrowanych_pojazd_w)+" "+vehiclesArray.length());
                                 JSONObject vehicleObject = vehiclesArray.getJSONObject(i);
                                 JSONObject attributes = vehicleObject.getJSONObject("attributes");
                                 String marka = attributes.getString("marka");
