@@ -42,6 +42,8 @@ public class CustomListAdapter extends BaseAdapter {
         sposobProdukcji.setText(valueTab[position][2]);
         TextView rodzPaliw = convertView.findViewById(R.id.rodzPaliw);
         rodzPaliw.setText(valueTab[position][3]);
+        TextView powiat = convertView.findViewById(R.id.powiat);
+        powiat.setText(valueTab[position][4]);
         return convertView;
     }
 }

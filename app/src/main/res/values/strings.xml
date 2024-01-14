@@ -25,6 +25,8 @@
     <string name="_2021_01_12">2021.01.12</string>
     <string name="wojew_dztwo">Województwo</string>
     <string name="ilo_zarejestrowanych_pojazd_w">Ilość zarejestrowanych pojazdów:</string>
+    <string name="powiat">POWIAT:</string>
+    <string name="zamojski">ZAMOJSKI</string>
     <string-array name="paliwo">
             <item>Benzyna</item>
             <item>Olej napędowy</item>
