@@ -114,11 +114,15 @@ public class ResultFragment extends Fragment {
                                 String sposobProdukcji = attributes.getString("sposob-produkcji");
                                 String rodzPaliw = attributes.getString("rodzaj-paliwa");
                                 String powiat = attributes.getString("rejestracja-powiat");
+                                String podRodzAuta = attributes.getString("podrodzaj-pojazdu");
+                                int masa = attributes.getInt("masa-wlasna");
                                 valueTab[i][0] = marka;
                                 valueTab[i][1] = model;
                                 valueTab[i][2] = sposobProdukcji;
                                 valueTab[i][3] = rodzPaliw;
                                 valueTab[i][4] = powiat;
+                                valueTab[i][5] = podRodzAuta;
+                                valueTab[i][6] = String.valueOf(masa);
                                 System.out.println(vehiclesArray.length());
                                 CustomListAdapter customListAdapter = new CustomListAdapter(getContext(), valueTab);
                                 carListView.setAdapter(customListAdapter);

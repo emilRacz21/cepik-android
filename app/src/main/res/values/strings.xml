@@ -27,6 +27,10 @@
     <string name="ilo_zarejestrowanych_pojazd_w">Ilość zarejestrowanych pojazdów:</string>
     <string name="powiat">POWIAT:</string>
     <string name="zamojski">ZAMOJSKI</string>
+    <string name="rodzaj_auta">RODZAJ AUTA:</string>
+    <string name="sedan">SEDAN</string>
+    <string name="masa_auta">MASA AUTA:</string>
+    <string name="kg">KG</string>
     <string-array name="paliwo">
             <item>Benzyna</item>
             <item>Olej napędowy</item>

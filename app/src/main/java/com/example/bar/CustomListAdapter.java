@@ -1,5 +1,6 @@
 package com.example.bar;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,6 +32,7 @@ public class CustomListAdapter extends BaseAdapter {
         return 0;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) convertView = inflater.inflate(R.layout.list_view, parent, false);
@@ -44,6 +46,10 @@ public class CustomListAdapter extends BaseAdapter {
         rodzPaliw.setText(valueTab[position][3]);
         TextView powiat = convertView.findViewById(R.id.powiat);
         powiat.setText(valueTab[position][4]);
+        TextView rodzAuta = convertView.findViewById(R.id.rodzAuta);
+        rodzAuta.setText(valueTab[position][5]);
+        TextView masaAuta = convertView.findViewById(R.id.masaAuta);
+        masaAuta.setText(valueTab[position][6]+" KG");
         return convertView;
     }
 }

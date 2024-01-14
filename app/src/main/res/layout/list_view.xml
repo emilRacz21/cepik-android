@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:background="@drawable/radius_blue"
-    android:rowCount="5"
+    android:rowCount="7"
     android:paddingTop="22sp"
     android:paddingBottom="22sp"
     android:paddingStart="22sp"
@@ -47,6 +47,20 @@
         android:text="@string/powiat"
         android:textSize="15sp" />
     <TextView
+        android:textColor="@color/ltBlack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32sp"
+        android:text="@string/rodzaj_auta"
+        android:textSize="15sp" />
+    <TextView
+        android:textColor="@color/ltBlack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32sp"
+        android:text="@string/masa_auta"
+        android:textSize="15sp" />
+    <TextView
         android:textColor="@color/black"
         android:textStyle="bold"
         android:textSize="20sp"
@@ -80,5 +94,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/zamojski"
+        android:textColor="@color/ltBlack" />
+    <TextView
+        android:id="@+id/rodzAuta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sedan"
+        android:textColor="@color/ltBlack" />
+    <TextView
+        android:id="@+id/masaAuta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/kg"
         android:textColor="@color/ltBlack" />
 </GridLayout>
