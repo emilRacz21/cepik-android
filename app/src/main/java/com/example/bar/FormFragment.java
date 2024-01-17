@@ -24,7 +24,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class VoivodeshipFragment extends Fragment {
+public class FormFragment extends Fragment {
     Button btnAccept;
     EditText brandAuto;
     EditText yearAuto;
@@ -42,14 +42,14 @@ public class VoivodeshipFragment extends Fragment {
     String selectedOption;
     Button wojButton;
     StringBuilder stringBuilder = new StringBuilder();
-    public VoivodeshipFragment() {}
+    public FormFragment() {}
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_voivodeship, container, false);
+        View view = inflater.inflate(R.layout.fragment_form, container, false);
         ((MainActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         btnAccept = view.findViewById(R.id.buttonAccept);
         wojButton = view.findViewById(R.id.wojButton);
@@ -93,12 +93,8 @@ public class VoivodeshipFragment extends Fragment {
             public void onNothingSelected(AdapterView<?> parent) {}
         });
         api(requestQueue, url);
-        btnAccept.setOnClickListener(view1 ->{
-            api(requestQueue, url);
-        });
-        wojButton.setOnClickListener(view1 ->{
-            dialog();
-        });
+        btnAccept.setOnClickListener(view1 -> api(requestQueue, url));
+        wojButton.setOnClickListener(view1 -> dialog());
         return view;
     }
     void dialog(){

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="#F1F1F1"
+    android:layout_height="match_parent"
+    tools:context=".IdCarFragment">
+
+        <LinearLayout
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="22sp"
+            android:paddingBottom="32sp"
+            android:paddingRight="32sp"
+            android:paddingLeft="32sp"
+            android:background="@drawable/radius_blue"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_marginBottom="2sp"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="UZUPEŁNIJ POLE"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="@color/ltBlack"/>
+
+            <EditText
+                android:id="@+id/editIdCar"
+                android:layout_width="260sp"
+                android:layout_height="60sp"
+                android:layout_gravity="center"
+                android:layout_marginTop="22sp"
+                android:background="@drawable/radius_profile"
+                android:ems="10"
+                android:hint="Wpisz ID pojazdu"
+                android:inputType="date"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                tools:ignore="Autofill,TextContrastCheck" />
+
+                <Button
+                    android:layout_marginTop="22sp"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:id="@+id/btnAccept"
+                    android:layout_width="120sp"
+                    android:layout_height="60sp"
+                    android:text="@string/akceptuj"
+                    tools:ignore="ButtonStyle" />
+
+        </LinearLayout>
+</RelativeLayout>

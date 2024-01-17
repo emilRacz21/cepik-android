@@ -14,8 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
@@ -55,6 +53,20 @@ public class ResultFragment extends Fragment {
         layoutCurrent = view.findViewById(R.id.layoutCurrent);
         StringBuilder stringBuilder = new StringBuilder();
         layoutCurrent.setVisibility(View.GONE);
+        getParentFragmentManager().setFragmentResultListener("idCarValues", this, new FragmentResultListener() {
+            @Override
+            public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
+                String idCar = result.getString("idCar");
+                System.out.println(idCar);
+                String urlAuta = "https://api.cepik.gov.pl/pojazdy/"+idCar;
+                System.out.println(urlAuta);
+                if(!result.isEmpty()){
+                    RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+                    api(requestQueue, urlAuta, true);
+                }
+            }
+        });
+
         getParentFragmentManager().setFragmentResultListener("values", this, new FragmentResultListener() {
             @Override
             public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
@@ -68,45 +80,59 @@ public class ResultFragment extends Fragment {
                 String brandCar = result.getString("brand").toUpperCase();
                 String yearCar = result.getString("year");
                 String modelCar = result.getString("model").toUpperCase();
-
                 String date1 = dateBegin.replace(".","");
                 String date2 = dateEnd.replace(".","");
                 dateTextBegin.setText(dateBegin);
                 dateTextEnd.setText(dateEnd);
-
-                if(!brandCar.isEmpty()){
-                    selectedCar = "&filter[marka]="+brandCar;
-                }else selectedCar ="";
-                if(!yearCar.isEmpty()){
-                    selectedYear = "&filter[sposob-produkcji]="+yearCar;
-                }else selectedYear ="";
-                if(!modelCar.isEmpty()){
-                    selectedModel="&filter[model]="+modelCar;
-                }else selectedModel ="";
+                selectedCar = !brandCar.isEmpty() ? "&filter[marka]=" + brandCar : "";
+                selectedYear = !yearCar.isEmpty() ? "&filter[sposob-produkcji]=" + yearCar : "";
+                selectedModel = !modelCar.isEmpty() ? "&filter[model]=" + modelCar : "";
                 String urlAuta = "https://api.cepik.gov.pl/pojazdy?wojewodztwo="+ wojKey +"&data-od="+ date1 +"&data-do="+ date2 +"&typ-daty=1&tylko-zarejestrowane=true&pokaz-wszystkie-pola=true&limit=500&page=1"+rodzPal+selectedCar+selectedYear+selectedModel;
-                System.out.println(urlAuta);
                 RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-                api(requestQueue, urlAuta);
+                System.out.println(urlAuta);
+                api(requestQueue, urlAuta,false);
             }
         });
         return view;
     }
-    void api(RequestQueue requestQueue, String url) {
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+
+    void api(RequestQueue requestQueue, String url, boolean isSingleVehicle) {
+        @SuppressLint("SetTextI18n") JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.GET,
                 url,
                 null,
-                new Response.Listener<JSONObject>() {
-                    @SuppressLint("SetTextI18n")
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        layoutProgress.setVisibility(View.GONE);
-                        layoutCurrent.setVisibility(View.VISIBLE);
-                        try {
-                            JSONArray vehiclesArray = response.getJSONArray("data");
-                            valueTab = new String[vehiclesArray.length()][vehiclesArray.length()];
+                response -> {
+                    layoutProgress.setVisibility(View.GONE);
+                    layoutCurrent.setVisibility(View.VISIBLE);
+                    try {
+                        JSONArray vehiclesArray;
+                        if (isSingleVehicle) {
+                            JSONObject data = response.getJSONObject("data").getJSONObject("attributes");
+                            valueTab = new String[1][7];
+                            wojNums.setText(getResources().getString(R.string.ilo_zarejestrowanych_pojazd_w) + " 1");
+
+                            String marka = data.getString("marka");
+                            String model = data.getString("model");
+                            String sposobProdukcji = data.getString("sposob-produkcji");
+                            String rodzPaliw = data.getString("rodzaj-paliwa");
+                            String powiat = data.getString("rejestracja-powiat");
+                            String podRodzAuta = data.getString("podrodzaj-pojazdu");
+                            String rejWoj = data.getString("rejestracja-wojewodztwo");
+                            int masa = data.getInt("masa-wlasna");
+                            wojText.setText(rejWoj.toUpperCase());
+                            valueTab[0][0] = marka;
+                            valueTab[0][1] = model;
+                            valueTab[0][2] = sposobProdukcji;
+                            valueTab[0][3] = rodzPaliw;
+                            valueTab[0][4] = powiat;
+                            valueTab[0][5] = podRodzAuta;
+                            valueTab[0][6] = String.valueOf(masa);
+                        } else {
+                            vehiclesArray = response.getJSONArray("data");
+                            valueTab = new String[vehiclesArray.length()][7];
+                            wojNums.setText(getResources().getString(R.string.ilo_zarejestrowanych_pojazd_w) + " " + vehiclesArray.length());
+
                             for (int i = 0; i < vehiclesArray.length(); i++) {
-                                wojNums.setText(getResources().getString(R.string.ilo_zarejestrowanych_pojazd_w)+" "+vehiclesArray.length());
                                 JSONObject vehicleObject = vehiclesArray.getJSONObject(i);
                                 JSONObject attributes = vehicleObject.getJSONObject("attributes");
                                 String marka = attributes.getString("marka");
@@ -123,27 +149,24 @@ public class ResultFragment extends Fragment {
                                 valueTab[i][4] = powiat;
                                 valueTab[i][5] = podRodzAuta;
                                 valueTab[i][6] = String.valueOf(masa);
-                                System.out.println(vehiclesArray.length());
-                                CustomListAdapter customListAdapter = new CustomListAdapter(getContext(), valueTab);
-                                carListView.setAdapter(customListAdapter);
                             }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
                         }
+                        CustomListAdapter customListAdapter = new CustomListAdapter(getContext(), valueTab);
+                        carListView.setAdapter(customListAdapter);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
                 },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        if (error != null && error.getMessage() != null) {
-                            VolleyLog.e(error.getMessage());
-                            Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
-                        } else {
-                            ((MainActivity)getActivity()).setFragment(new VoivodeshipFragment());
-                            Toast.makeText(getContext(), "Wprowadzono niepoprawne dane", Toast.LENGTH_SHORT).show();
-                        }
+                error -> {
+                    if (error != null && error.getMessage() != null) {
+                        VolleyLog.e(error.getMessage());
+                        Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                    } else {
+                        ((MainActivity) getActivity()).setFragment(new FormFragment());
+                        Toast.makeText(getContext(), "Wprowadzono niepoprawne dane", Toast.LENGTH_SHORT).show();
                     }
                 });
         requestQueue.add(jsonObjectRequest);
     }
+
 }

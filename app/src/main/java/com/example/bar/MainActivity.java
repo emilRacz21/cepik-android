@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         setActionBar("  Formularz", R.drawable.baseline_assignment_24);
         getSupportActionBar().setBackgroundDrawable(ContextCompat.getDrawable(this,R.color.colorPrimary));
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_TITLE | ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_USE_LOGO | ActionBar.DISPLAY_SHOW_CUSTOM);
-        setFragment(new VoivodeshipFragment());
+        setFragment(new FormFragment());
     }
 
     public boolean onCreateOptionsMenu(Menu menu){
@@ -32,8 +32,15 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NotNull MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             setActionBar("  Formularz", R.drawable.baseline_assignment_24);
-            setFragment(new VoivodeshipFragment());
-        } else {
+            setFragment(new FormFragment());
+        }if(item.getItemId() == R.id.formFull){
+            setActionBar("  Formularz", R.drawable.baseline_assignment_24);
+            setFragment(new FormFragment());
+        }if(item.getItemId() == R.id.idFrom){
+            setActionBar("  Formularz po ID", R.drawable.baseline_assignment_24);
+            setFragment(new IdCarFragment());
+        }
+        else {
             return super.onOptionsItemSelected(item);
         }
         return false;
