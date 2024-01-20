@@ -149,6 +149,7 @@ public class ResultFragment extends Fragment {
                                 valueTab[i][4] = powiat;
                                 valueTab[i][5] = podRodzAuta;
                                 valueTab[i][6] = String.valueOf(masa);
+                                System.out.println("Marka: "+marka+ " "+model+ " ID pojazdu: "+ vehicleObject.getString("id"));
                             }
                         }
                         CustomListAdapter customListAdapter = new CustomListAdapter(getContext(), valueTab);

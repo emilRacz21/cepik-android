@@ -75,7 +75,9 @@ public class FormFragment extends Fragment {
                         break;
                     case 1: selectedOption = "&filter[rodzaj-paliwa]=OLEJ%20NAPĘDOWY";
                         break;
-                    case 2: selectedOption = "";
+                    case 2: selectedOption = "&filter[rodzaj-paliwa]=ENERGIA%20ELEKTRYCZNA";
+                        break;
+                    case 3: selectedOption = "";
                         break;
                 }
             }

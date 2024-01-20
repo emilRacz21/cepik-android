@@ -34,7 +34,8 @@
     <string-array name="paliwo">
         <item>Benzyna</item>
         <item>Olej napędowy</item>
-        <item>Benzyna i olej napędowy</item>
+        <item>Energia elektryczna</item>
+        <item>Wszystko</item>
     </string-array>
     <string-array name="wojewodztwa">
         <item>Dolnośląskie</item>
