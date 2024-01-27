@@ -54,7 +54,17 @@
             android:scrollbars="none"
             android:id="@+id/carListView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="22sp"
+                android:text="@string/aby_skopiowa_id_kliknij_w_kafelek"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+        </ListView>
     </LinearLayout>
 
     <LinearLayout
@@ -67,15 +77,6 @@
         android:orientation="vertical"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true">
-
-        <TextView
-            android:textSize="15sp"
-            android:textColor="@color/black"
-            android:layout_gravity="center"
-            android:layout_marginTop="22sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/aby_skopiowa_id_kliknij_w_kafelek"/>
 
         <TextView
             android:textSize="18sp"
