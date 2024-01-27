@@ -1,6 +1,9 @@
 package com.example.bar;
 
 import android.annotation.SuppressLint;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -8,6 +11,7 @@ import androidx.fragment.app.FragmentResultListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -129,7 +133,7 @@ public class ResultFragment extends Fragment {
                             valueTab[0][6] = String.valueOf(masa);
                         } else {
                             vehiclesArray = response.getJSONArray("data");
-                            valueTab = new String[vehiclesArray.length()][7];
+                            valueTab = new String[vehiclesArray.length()][8];
                             wojNums.setText(getResources().getString(R.string.ilo_zarejestrowanych_pojazd_w) + " " + vehiclesArray.length());
 
                             for (int i = 0; i < vehiclesArray.length(); i++) {
@@ -141,6 +145,7 @@ public class ResultFragment extends Fragment {
                                 String rodzPaliw = attributes.getString("rodzaj-paliwa");
                                 String powiat = attributes.getString("rejestracja-powiat");
                                 String podRodzAuta = attributes.getString("podrodzaj-pojazdu");
+                                String id1 = vehicleObject.getString("id");
                                 int masa = attributes.getInt("masa-wlasna");
                                 valueTab[i][0] = marka;
                                 valueTab[i][1] = model;
@@ -149,11 +154,13 @@ public class ResultFragment extends Fragment {
                                 valueTab[i][4] = powiat;
                                 valueTab[i][5] = podRodzAuta;
                                 valueTab[i][6] = String.valueOf(masa);
-                                System.out.println("Marka: "+marka+ " "+model+ " ID pojazdu: "+ vehicleObject.getString("id"));
+                                valueTab[i][7] = id1;
+                                carListView.setOnItemClickListener((parent, view, position, id) -> copyID(position));
                             }
                         }
                         CustomListAdapter customListAdapter = new CustomListAdapter(getContext(), valueTab);
                         carListView.setAdapter(customListAdapter);
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -168,6 +175,17 @@ public class ResultFragment extends Fragment {
                     }
                 });
         requestQueue.add(jsonObjectRequest);
+    }
+
+    void copyID(int position){
+        ClipboardManager clipboardManager = (ClipboardManager) requireContext().getSystemService(Context.CLIPBOARD_SERVICE);
+        if (clipboardManager != null) {
+            ClipData clipData = ClipData.newPlainText("Vehicle ID", valueTab[position][7]);
+            clipboardManager.setPrimaryClip(clipData);
+            Toast.makeText(getContext(), "Skopiowano ID auta!", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getContext(), "ID niedostępne!", Toast.LENGTH_SHORT).show();
+        }
     }
 
 }

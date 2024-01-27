@@ -58,8 +58,8 @@
     </LinearLayout>
 
     <LinearLayout
-        android:paddingLeft="70sp"
-        android:paddingRight="70sp"
+        android:paddingLeft="60sp"
+        android:paddingRight="60sp"
         android:background="@drawable/radius_blue"
         android:id="@+id/hideLayout"
         android:layout_width="wrap_content"
@@ -69,10 +69,19 @@
         android:layout_centerHorizontal="true">
 
         <TextView
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:textColor="@color/black"
             android:layout_gravity="center"
             android:layout_marginTop="22sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/aby_skopiowa_id_kliknij_w_kafelek"/>
+
+        <TextView
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            android:layout_marginTop="2sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/prosze_czeka"/>

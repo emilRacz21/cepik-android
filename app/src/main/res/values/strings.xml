@@ -31,6 +31,7 @@
     <string name="sedan">SEDAN</string>
     <string name="masa_auta">MASA AUTA:</string>
     <string name="kg">KG</string>
+    <string name="aby_skopiowa_id_kliknij_w_kafelek">Aby skopiować ID kliknij w kafelek!</string>
     <string-array name="paliwo">
         <item>Benzyna</item>
         <item>Olej napędowy</item>
